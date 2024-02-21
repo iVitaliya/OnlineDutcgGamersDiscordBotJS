@@ -1,0 +1,25 @@
+{
+  "name": "odg-bot",
+  "version": "1.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Discord",
+    "Bot"
+  ],
+  "author": "Moony <sleepish_moonhead>",
+  "license": "MIT",
+  "dependencies": {
+    "colorette": "^2.0.20",
+    "discord.js": "^14.14.1",
+    "fs": "^0.0.1-security",
+    "moment": "^2.30.1",
+    "quick.db": "^9.1.7"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5"
+  }
+}
