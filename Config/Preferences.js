@@ -20,7 +20,7 @@ const Colors = {
 
     Settings: 0xa6a6a8,
     Guilds: 0x42a4ee,
-    Bugs: 0xa6a7ab
+    Bugs: 0xa6a7ab,
 };
 
 const Icons = {
@@ -43,7 +43,7 @@ const Icons = {
 
     Settings: "https://i.imgur.com/BxFXaRr.png",
     Guilds: "https://i.imgur.com/xDR7eBr.png",
-    Bugs: "https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_bug_report_48px-256.png"
+    Bugs: "https://cdn3.iconfinder.com/data/icons/google-material-design-icons/48/ic_bug_report_48px-256.png",
 };
 
 module.exports = {
@@ -51,5 +51,5 @@ module.exports = {
     icons: Icons,
     token: "OTAxODU5ODA0Nzc4MjA1MTg0.GVkDlc.CvdpbNHB3opQbNM3EparYaBWn1EQCqPEGby6qo",
     prefix: "odg!",
-    developer: "671374842951630858"
+    developer: "671374842951630858",
 };

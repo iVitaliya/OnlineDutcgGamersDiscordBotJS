@@ -1,7 +1,7 @@
 /** A class used to fetch/get a {@link https://discord.js.org/docs/packages/discord.js/main/GuildEmoji:Class GuildEmoji}. */
 class ODGEmoji {
-    constructor (
-        /** 
+    constructor(
+        /**
          * The client which is used to fetch/get a {@link https://discord.js.org/docs/packages/discord.js/main/GuildEmoji:Class GuildEmoji}.
          * @type {import("../../Client/Client")} */
         client
@@ -9,7 +9,7 @@ class ODGEmoji {
         /**
          * @protected
          * @type {import("../../Client/Client")} */
-         this.client = client;
+        this.client = client;
     }
 
     /**
@@ -18,26 +18,38 @@ class ODGEmoji {
      * @param {import("discord.js").Guild} guild */
     async resolve(resolvable, guild) {
         let EmojiResolvable = await guild.emojis.cache.find(
-            (emji) => emji.name.toLowerCase() === resolvable.toLowerCase() ||
+            (emji) =>
+                emji.name.toLowerCase() === resolvable.toLowerCase() ||
                 `<:${emji.name}:${emji.id}>` === resolvable ||
                 `:${emji.name}:` === resolvable ||
                 emji.id === resolvable
         );
 
         try {
-            if (typeof EmojiResolvable === "undefined") EmojiResolvable = await guild.emojis.fetch()
+            if (typeof EmojiResolvable === "undefined")
+                EmojiResolvable = await guild.emojis.fetch(
+                    this.toID(resolvable),
+                    { cache: false, force: true }
+                );
         } catch (err) {
-            
+            throw this.client.logger.error({
+                err_name: err.name,
+                err_message: err.message,
+            });
         }
+
+        return EmojiResolvable || null;
     }
 
     /**
      * @private
-     * @param {string|{ id: string; str: string; }} replaceble */
+     * @param {string} replaceble */
     toID(replaceble) {
-        if (typeof replaceble === "string") return replaceble.includes(":") ? replaceble.replace(/:/g, "") : replaceble;
-        else {
-            
-        }
+        const emoji = replaceble.split(/[:<>]/g);
+        const result = emoji.filter((str) => str !== "");
+
+        return result[1];
     }
 }
+
+module.exports = ODGEmoji;

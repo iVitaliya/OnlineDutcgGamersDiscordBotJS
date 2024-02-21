@@ -1,9 +1,15 @@
 const ODGAuditLogs = require("./AuditLogs"),
     ODGChannel = require("./Channel"),
-    ODGMember = require("./Member");
+    ODGEmoji = require("./Emoji"),
+    ODGMember = require("./Member"),
+    ODGRole = require("./Role"),
+    ODGUser = require("./User");
 
 module.exports = {
     audit_logs: ODGAuditLogs,
     channel: ODGChannel,
-    member: ODGMember
+    emoji: ODGEmoji,
+    member: ODGMember,
+    role: ODGRole,
+    user: ODGUser,
 };

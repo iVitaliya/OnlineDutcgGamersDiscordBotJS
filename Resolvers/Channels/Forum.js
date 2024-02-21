@@ -3,7 +3,7 @@ const { ForumChannel } = require("discord.js");
 /** A class used to fetch/get a {@link https://discord.js.org/docs/packages/discord.js/main/ForumChannel:Class ForumChannel}. */
 class ODGForumChannel {
     constructor(
-        /** 
+        /**
          * The client which is used to fetch/get the {@link https://discord.js.org/docs/packages/discord.js/main/ForumChannel:Class ForumChannel}.
          * @type {import("../../Client/Client")} */
         client
@@ -21,16 +21,21 @@ class ODGForumChannel {
      * @param {import("discord.js").Guild} guild */
     async resolve(resolvable, guild) {
         let ChannelResolvable = await guild.channels.cache.find(
-            (chnnl) => chnnl.name.toLowerCase() === resolvable.toLowerCase() ||
+            (chnnl) =>
+                chnnl.name.toLowerCase() === resolvable.toLowerCase() ||
                 chnnl.id === resolvable.replace(/[\\<>#]/g, "")
         );
 
         try {
-            if (typeof ChannelResolvable === "undefined") ChannelResolvable = await guild.channels.fetch(resolvable.replace(/[\\<>#]/g, ""), { cache: false, force: true });
+            if (typeof ChannelResolvable === "undefined")
+                ChannelResolvable = await guild.channels.fetch(
+                    resolvable.replace(/[\\<>#]/g, ""),
+                    { cache: false, force: true }
+                );
         } catch (err) {
             throw this.client.logger.error({
                 err_name: err.name,
-                err_message: err.message
+                err_message: err.message,
             });
         }
 

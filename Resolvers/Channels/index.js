@@ -12,7 +12,7 @@ const ODGCategoryChannel = require("./Category"),
 
 module.exports = {
     category: ODGCategoryChannel,
-    diretory: ODGDirectoryChannel,
+    directory: ODGDirectoryChannel,
     forum: ODGForumChannel,
     media: ODGMediaChannel,
     news: ODGNewsChannel,
@@ -21,5 +21,5 @@ module.exports = {
     thread: ODGThreadChannel,
     thread_only: ODGThreadOnlyChannel,
     voice: ODGVoiceChannel,
-    welcome: ODGWelcomeChannel
+    welcome: ODGWelcomeChannel,
 };

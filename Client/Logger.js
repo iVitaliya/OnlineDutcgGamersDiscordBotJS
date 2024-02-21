@@ -13,7 +13,7 @@ const {
 
 /** @param {string} title */
 function seekErrorTitle(title) {
-    return (title.includes("[") && title.includes("]"))
+    return title.includes("[") && title.includes("]")
         ? title.toUpperCase()
         : `[${title.toUpperCase()}]`;
 }
