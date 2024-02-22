@@ -1,9 +1,29 @@
 // Required files for the client...
 const Logger = require("./Logger");
 const { developer, token } = require("../Config/Preferences");
-
-const Resolver = require("./Resolver");
 const Functions = require("../Utils/Functionts");
+
+const {
+    category,
+    directory,
+    forum,
+    media,
+    news,
+    stage,
+    text,
+    thread,
+    thread_only,
+    voice,
+    welcome
+} = require("../Resolvers/Channels/index");
+const {
+    audit_logs,
+    channel,
+    emoji,
+    member,
+    role,
+    user
+} = require("../Resolvers/Regular/index");
 
 // Required packages for the client...
 const {
@@ -35,6 +55,11 @@ function Sweeper() {
         sticker: { interval: 950 },
     };
 }
+
+const strictResolvers = function(client) {
+    const Category = new category(client);
+    const Directory = new directory(client);
+};
 
 class ODGClient extends Client {
     constructor() {
@@ -163,8 +188,21 @@ class ODGClient extends Client {
         this.embed = ODGEmbed;
         this.pager = Pager;
 
-        /** @type {Resolver} */
-        this.resolvers = new Resolver(this);
+        // this.resolvers = {
+        //     audit_logs,
+        //     channel,
+        //     emoji,
+        //     member,
+        //     role,
+        //     user,
+        //     strict: {
+        //         category: () => {
+        //             const instance = new category(this);
+
+        //             return instance.resolve
+        //         }()
+        //     }
+        // };
         /** @type {typeof Utils} */
         this.functions = Functions;
     }

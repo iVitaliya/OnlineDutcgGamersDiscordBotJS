@@ -5,7 +5,7 @@ class ODGCategoryChannel {
     constructor(
         /**
          * The client which is used to fetch/get the {@link https://discord.js.org/docs/packages/discord.js/main/CategoryChannel:Class CategoryChannel}.
-         * */
+         * @type {import("../../Client/Client")} */
         client
     ) {
         /**
