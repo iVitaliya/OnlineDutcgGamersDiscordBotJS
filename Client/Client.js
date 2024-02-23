@@ -24,6 +24,10 @@ const {
     role,
     user
 } = require("../Resolvers/Regular/index");
+const {
+    guild,
+    message
+} = require("../Resolvers/Strict/index");
 
 // Required packages for the client...
 const {
@@ -55,11 +59,6 @@ function Sweeper() {
         sticker: { interval: 950 },
     };
 }
-
-const strictResolvers = function(client) {
-    const Category = new category(client);
-    const Directory = new directory(client);
-};
 
 class ODGClient extends Client {
     constructor() {
@@ -188,21 +187,87 @@ class ODGClient extends Client {
         this.embed = ODGEmbed;
         this.pager = Pager;
 
-        // this.resolvers = {
-        //     audit_logs,
-        //     channel,
-        //     emoji,
-        //     member,
-        //     role,
-        //     user,
-        //     strict: {
-        //         category: () => {
-        //             const instance = new category(this);
+        this.resolvers = {
+            /** This resolves an Audit Log you might want to search for. */
+            audit_logs,
+            /** This resolves a Channel you might be searching for, losely, if you want to search strictly for a channel with a specific type, use: `<ODGClient>.resolvers.strict_channel.<PROPERTY>`. */
+            channel,
+            /** This resolves an GuildEmoji you might be searching for. */
+            emoji,
+            /** This resolves a GuildMember you might be searching for. */
+            member,
+            /** This resolves a Role you might be searching for. */
+            role,
+            /** This resolves a User you might be searching for. */
+            user,
+            /** All the properties of this object lets you search specificly for a channel of said type. */
+            strict_channel: {
+                /** This resolves a channel of type category. */
+                category: function() {
+                    const instance = new category(this);
 
-        //             return instance.resolve
-        //         }()
-        //     }
-        // };
+                    return instance;
+                }(),
+                /** This resolves a channel of type directory. */
+                directory: function() {
+                    const instance = new directory(this);
+
+                    return instance;
+                }(),
+                /** This resolves a channel of type forum. */
+                forum: function() {
+                    const instance = new forum(this);
+
+                    return instance;
+                }(),
+                /** This resolves a channel of type media. */
+                media: function() {
+                    const instance = new media(this);
+
+                    return instance;
+                }(),
+                /** This resolves a channel of type news. */
+                news: function() {
+                    const instance = new news(this);
+
+                    return instance;
+                }(),
+                /** This resolves a channel of type stage. */
+                stage: function() {
+                    const instance = new stage(this);
+
+                    return instance;
+                }(),
+                /** This resolves a channel of type text. */
+                text: function() {
+                    const instance = new text(this);
+
+                    return instance;
+                }(),
+                /** This resolves a channel of type thread. */
+                thread: function() {
+                    const instance = new thread(this);
+
+                    return instance;
+                }(),
+                /** This resolves a channel of type thread and can only be threads. */
+                thread_only: function() {
+                    const instance = new thread_only(this);
+
+                    return instance;
+                }(),
+                voice: function() {
+                    const instance = new voice(this);
+
+                    return instance;
+                }(),
+                welcome: function() {
+                    const instance = new welcome(this);
+
+                    return instance;
+                }()
+            }
+        };
         /** @type {typeof Utils} */
         this.functions = Functions;
     }
